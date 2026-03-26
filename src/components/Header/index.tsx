@@ -1,17 +1,15 @@
+import { useSelector } from 'react-redux'
+import { RootState } from '../../store'
+import { paraReal } from '../Produto'
 import * as S from './styles'
-
+import cesta from '../../assets/cesta.png'
 import { Produto } from '../../App'
 
-import cesta from '../../assets/cesta.png'
-import { paraReal } from '../Produto'
+const Header = () => {
+  const itensCarrinho = useSelector((state: RootState) => state.carrinho.itens)
 
-type Props = {
-  itensNoCarrinho: Produto[]
-  favoritos: Produto[]
-}
-
-const Header = ({ itensNoCarrinho, favoritos }: Props) => {
-  const valorTotal = itensNoCarrinho.reduce((acc, item) => {
+  // 3. Adicionado o tipo ': number' no acumulador (acc) para resolver o erro TS7006
+  const valorTotal = itensCarrinho.reduce((acc: number, item: Produto) => {
     acc += item.preco
     return acc
   }, 0)
@@ -20,10 +18,9 @@ const Header = ({ itensNoCarrinho, favoritos }: Props) => {
     <S.Header>
       <h1>EBAC Sports</h1>
       <div>
-        <span>{favoritos.length} favoritos</span>
-        <img src={cesta} />
+        <img src={cesta} alt="Carrinho" />
         <span>
-          {itensNoCarrinho.length} itens, valor total: {paraReal(valorTotal)}
+          {itensCarrinho.length} itens, valor total: {paraReal(valorTotal)}
         </span>
       </div>
     </S.Header>
