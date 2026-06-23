@@ -3,15 +3,14 @@ import { RootState } from '../../store'
 import { paraReal } from '../Produto'
 import * as S from './styles'
 import cesta from '../../assets/cesta.png'
-import { Produto } from '../../App'
+
+import { Produto as ProdutoType } from '../../store/service/api'
 
 const Header = () => {
   const itensCarrinho = useSelector((state: RootState) => state.carrinho.itens)
 
-  // 3. Adicionado o tipo ': number' no acumulador (acc) para resolver o erro TS7006
-  const valorTotal = itensCarrinho.reduce((acc: number, item: Produto) => {
-    acc += item.preco
-    return acc
+  const valorTotal = itensCarrinho.reduce((acc, item: ProdutoType) => {
+    return acc + item.preco
   }, 0)
 
   return (

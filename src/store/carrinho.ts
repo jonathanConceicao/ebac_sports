@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Produto } from './store/service/api'
+import { Produto } from './service/api'
 
 type CarrinhoState = {
   itens: Produto[]
@@ -19,7 +19,7 @@ const carrinhoSlice = createSlice({
       if (!itemExiste) {
         state.itens.push(action.payload)
       } else {
-        alert('Item já adicionado')
+        alert('Item já adicionado ao carrinho')
       }
     },
     remover: (state, action: PayloadAction<number>) => {

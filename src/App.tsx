@@ -1,34 +1,38 @@
-import { useState, useEffect } from 'react'
-import Header from './components/Header'
-import Produtos from './containers/Produtos'
-import { GlobalStyle } from './styles'
-
-export type Produto = {
-  id: number
-  nome: string
-  preco: number
-  imagem: string
-}
+import React from 'react'
+import ProdutoComponente from './components/Produto'
+import { useAppDispatch, useAppSelector } from './store/hooks'
+import { favoritar } from '../src/store/../favoritos1'
+import { Produto, useGetProdutosQuery } from './store/service/api'
+import { Produtos } from './containers/styles'
 
 function App() {
-  const [produtos, setProdutos] = useState<Produto[]>([])
+  const { data: produtos, isLoading, error } = useGetProdutosQuery()
 
-  useEffect(() => {
-    fetch('https://fake-api-teste.vercel.app/api/ebac_sports')
-      .then((res) => res.json())
-      .then((res) => setProdutos(res))
-  }, [])
+  const favoritos = useAppSelector((state) => state.favoritos.itens)
+  const dispatch = useAppDispatch()
 
-  return (
-    <>
-      <GlobalStyle />
-      <div className="container">
-        <Header />
-        {/* Passando os produtos via props */}
-        <Produtos itens={produtos} />
-      </div>
-    </>
-  )
-}
+  const lidarComFavorito = (produto: Produto) => {
+    dispatch(favoritar(produto))
+  }
+
+  if (isLoading) return <p>Carregando produtos...</p>
+  if (error) return <p>Erro ao carregar produtos.</p>
+
+return (
+  <div className="app-container">
+    <main>
+      <Produtos> 
+        {produtos?.map((item) => (
+          <ProdutoComponente
+            key={item.id}
+            produto={item}
+            estaNosFavoritos={favoritos.some((f) => f.id === item.id)}
+            aoFavoritar={lidarComFavorito}
+          />
+        ))}
+      </Produtos>
+    </main>
+  </div>
+)}
 
 export default App
