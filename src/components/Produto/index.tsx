@@ -1,13 +1,14 @@
 import { memo } from 'react'
 import { useDispatch } from 'react-redux'
-import { Produto as ProdutoType } from '../../store/service/api'
+import { Produto as Produto } from '../../store/service/api'
 import { adicionar } from '../../carrinho'
 import * as S from './styles'
 
 type Props = {
-  produto: ProdutoType
+  produto: Produto
   estaNosFavoritos: boolean
-  aoFavoritar: (produto: ProdutoType) => void 
+  aoFavoritar: (produto: Produto) => void
+  aoComprar: (produto: Produto) => void
 }
 
 export const paraReal = (valor: number) =>
@@ -15,7 +16,11 @@ export const paraReal = (valor: number) =>
     valor
   )
 
-const ProdutoComponent = ({ produto, estaNosFavoritos, aoFavoritar }: Props) => {
+const ProdutoComponent = ({
+  produto,
+  estaNosFavoritos,
+  aoFavoritar
+}: Props) => {
   const dispatch = useDispatch()
 
   const aoComprar = () => dispatch(adicionar(produto))

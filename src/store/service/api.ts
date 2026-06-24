@@ -10,7 +10,7 @@ export type Produto = {
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://fake-api-tau.vercel.app/api' // URL da API do projeto ebac_sports
+    baseUrl: 'https://api-ebac.vercel.app/api/ebac_sports' // URL da API do projeto ebac_sports
   }),
   endpoints: (builder) => ({
     getProdutos: builder.query<Produto[], void>({

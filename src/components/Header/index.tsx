@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux'
 import { RootState } from '../../store'
 import { paraReal } from '../Produto'
 import * as S from './styles'
-import cesta from '../../assets/cesta.png'
+import cesta from '../assets/cesta.png'
 
 import { Produto as ProdutoType } from '../../store/service/api'
 
