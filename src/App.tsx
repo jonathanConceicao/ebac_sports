@@ -1,44 +1,33 @@
-import React from 'react'
-import ProdutoComponente from './components/Produto'
-import { useAppDispatch, useAppSelector } from './store/hooks'
-import { favoritar } from './favoritos1'
-import { adicionar } from './carrinho'
-import { Produto, useGetProdutosQuery } from './store/service/api'
-import { Produtos } from './containers/styles'
+import { useEffect, useState } from 'react'
+import Header from './components/Header'
+import Produtos from './containers/Produtos'
+
+import { GlobalStyle } from './styles'
+import { Provider } from 'react-redux'
+
+import { store } from './store'
+
+
+export type Sports = {
+  id: number
+  titulo: string
+  plataformas: string[]
+  precoAntigo: number
+  nome: string
+  preco: number
+  categoria: string
+  imagem: string
+}
 
 function App() {
-  const { data: produtos, isLoading, error } = useGetProdutosQuery()
-
-  const favoritos = useAppSelector((state) => state.favoritos.itens)
-  const dispatch = useAppDispatch()
-
-  const lidarComFavorito = (produto: Produto) => {
-    dispatch(favoritar(produto))
-  }
-
-  const lidarComCarrinho = (produto: Produto) => {
-    dispatch(adicionar(produto))
-  }
-
-  if (isLoading) return <p>Carregando produtos...</p>
-  if (error) return <p>Erro ao carregar produtos.</p>
-
   return (
-    <div className="app-container">
-      <main>
-        <Produtos>
-          {produtos?.map((item) => (
-            <ProdutoComponente
-              key={item.id}
-              produto={item}
-              estaNosFavoritos={favoritos.some((f) => f.id === item.id)}
-              aoFavoritar={lidarComFavorito}
-              aoComprar={lidarComCarrinho}
-            />
-          ))}
-        </Produtos>
-      </main>
-    </div>
+    <Provider store={store}>
+      <GlobalStyle />
+      <div className="container">
+        <Header />
+        <Produtos />
+      </div>
+    </Provider>
   )
 }
 

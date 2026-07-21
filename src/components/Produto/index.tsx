@@ -1,14 +1,12 @@
-import { memo } from 'react'
 import { useDispatch } from 'react-redux'
-import { Produto as Produto } from '../../store/service/api'
-import { adicionar } from '../../carrinho'
+import { Sports} from '../../App'
 import * as S from './styles'
 
+import { adicionar } from '../../store/reducer/carrinho'
+import { Produtos } from '../../containers/styles'
+
 type Props = {
-  produto: Produto
-  estaNosFavoritos: boolean
-  aoFavoritar: (produto: Produto) => void
-  aoComprar: (produto: Produto) => void
+  item: Sports
 }
 
 export const paraReal = (valor: number) =>
@@ -16,34 +14,29 @@ export const paraReal = (valor: number) =>
     valor
   )
 
-const ProdutoComponent = ({
-  produto,
-  estaNosFavoritos,
-  aoFavoritar
-}: Props) => {
+const Produto = ({item}: Props) => {
   const dispatch = useDispatch()
-
-  const aoComprar = () => dispatch(adicionar(produto))
-
   return (
     <S.Produto>
       <S.Capa>
-        <img src={produto.imagem} alt={produto.nome} />
+        <S.Tag>{item.categoria}</S.Tag>
+        <img src={item.imagem} alt={item.nome} />
       </S.Capa>
-      <S.Titulo>{produto.nome}</S.Titulo>
-      <S.Preco>
-        <strong>{paraReal(produto.preco)}</strong>
-      </S.Preco>
-      <S.BtnCurtir onClick={() => aoFavoritar(produto)} type="button">
-        {estaNosFavoritos
-          ? '- Remover dos favoritos'
-          : '+ Adicionar aos favoritos'}
-      </S.BtnCurtir>
-      <S.BtnComprar onClick={aoComprar} type="button">
+      <S.Titulo>{item.nome}</S.Titulo>
+      <S.Plataformas>
+        {item.plataformas.map((plat) => (
+          <li key={plat}>{plat}</li>
+        ))}
+        </S.Plataformas>
+      <S.Prices>
+        {item.precoAntigo && <small>{paraReal(item.precoAntigo)}</small>}       
+        <strong>{paraReal(item.preco)}</strong>
+      </S.Prices>
+      <S.BtnComprar onClick={() => dispatch(adicionar(item))} type="button">
         Adicionar ao carrinho
       </S.BtnComprar>
     </S.Produto>
   )
 }
 
-export default memo(ProdutoComponent)
+export default Produto

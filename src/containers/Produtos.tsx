@@ -1,33 +1,24 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../store'
-import { adicionar } from '../store/carrinho'
-import { useGetProdutosQuery } from '../store/service/api'
+import { Sports } from '../App'
+import  Produtos  from '../components/Produto'
+import { useGetProdutosQuery } from '../service/api'
 
-const ProdutosComponent = () => {
-  const dispatch = useDispatch()
-  const { data: produtos, isLoading } = useGetProdutosQuery()
+import * as S from './styles'
 
-  const itensNoCarrinho = useSelector(
-    (state: RootState) => state.carrinho.itens
-  )
 
-  if (isLoading) return <div>Carregando...</div>
+const Produtos = () => {
 
-  return (
-    <section>
-      {produtos?.map((produto) => (
-        <div key={produto.id}>
-          <img src={produto.imagem} alt={produto.nome} />
-          <h3>{produto.nome}</h3>
-          <button onClick={() => dispatch(adicionar(produto))}>
-            {itensNoCarrinho.find((p) => p.id === produto.id)
-              ? 'Já está no carrinho'
-              : 'Adicionar ao carrinho'}
-          </button>
-        </div>
-      ))}
-    </section>
+  const {data: produto, isLoading} = useGetProdutosQuery ()
+
+if (isLoading) return <h2>Carregando...<h2/>
+return (
+  <>
+      <S.Produtos>
+        {produto?.map((item) => (
+          <Produtos key={item.id} item={item} />
+        ))}
+      </S.Produtos>
+    </>
   )
 }
 
-export default ProdutosComponent
+export default Produtos
