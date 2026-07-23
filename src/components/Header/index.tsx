@@ -6,7 +6,6 @@ import { paraReal } from '../Produto'
 
 import { RootReducer } from '../../store'
 
-
 const Header = () => {
   const itens = useSelector((state: RootReducer) => state.carrinho.itens)
   const valorTotal = itens.reduce((acc, item) => {
@@ -19,7 +18,7 @@ const Header = () => {
       <h1>EBAC Sports</h1>
       <div>
         <img src={cesta} />
-          <span>
+        <span>
           {itens.length} itens, valor total: {paraReal(valorTotal)}
         </span>
       </div>

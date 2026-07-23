@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import { Sports} from '../../App'
+import { Sports } from '../../App'
 import * as S from './styles'
 
 import { adicionar } from '../../store/reducer/carrinho'
@@ -14,22 +14,22 @@ export const paraReal = (valor: number) =>
     valor
   )
 
-const Produto = ({item}: Props) => {
+const Produto = ({ item }: Props) => {
   const dispatch = useDispatch()
   return (
     <S.Produto>
       <S.Capa>
         <S.Tag>{item.categoria}</S.Tag>
-        <img src={item.imagem} alt={item.nome} />
+        <img src={Produtos.imagem} alt={Produtos.nome} />
       </S.Capa>
       <S.Titulo>{item.nome}</S.Titulo>
       <S.Plataformas>
         {item.plataformas.map((plat) => (
           <li key={plat}>{plat}</li>
         ))}
-        </S.Plataformas>
+      </S.Plataformas>
       <S.Prices>
-        {item.precoAntigo && <small>{paraReal(item.precoAntigo)}</small>}       
+        {item.precoAntigo && <small>{paraReal(item.precoAntigo)}</small>}
         <strong>{paraReal(item.preco)}</strong>
       </S.Prices>
       <S.BtnComprar onClick={() => dispatch(adicionar(item))} type="button">

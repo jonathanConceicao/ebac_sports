@@ -7,7 +7,7 @@ type carrinhosState = {
 }
 
 const initialState: carrinhosState = {
-  itens: []
+  itens: [],
 }
 
 const carrinhoSlice = createSlice({
@@ -15,15 +15,15 @@ const carrinhoSlice = createSlice({
   initialState,
   reducers: {
     adicionar: (state, action: PayloadAction<Sports>) => {
-      const jogo = action.payload
+      const produtos = action.payload
 
-      if (state.itens.find((Produto) => Produto.id === jogo.id)) {
+      if (state.itens.find((Produto) => Produto.id === produtos.id)) {
         alert('Item ja adicionado')
       } else {
-        state.itens.push(jogo)
+        state.itens.push(produtos)
       }
-    }
-  }
+    },
+  },
 })
 
 export const { adicionar } = carrinhoSlice.actions

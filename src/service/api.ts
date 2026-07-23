@@ -1,19 +1,19 @@
-    import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-    import { Sports } from '../App'
+import { Sports } from '../App'
 
-    const api = createApi({
-    baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:4000'
+const api = createApi({
+  baseQuery: fetchBaseQuery({
+    baseUrl: 'http://localhost:4000',
+  }),
+
+  endpoints: (builder) => ({
+    getJogos: builder.query<Sports[], void>({
+      query: () => 'produtos',
     }),
+  }),
+})
 
-    endpoints: (builder) => ({
-        getJogos: builder.query<Sports[], void>({
-        query: () => 'produtos'
-        })
-    })
-    })
+export const { useGetJogosQuery } = api
 
-    export const { useGetProdutosQuery } = api
-
-    export default api
+export default api
