@@ -6,7 +6,7 @@ import { adicionar } from '../../store/reducer/carrinho'
 import { Produtos } from '../../containers/styles'
 
 type Props = {
-  item:  ProdutoType
+  item: ProdutoType
 }
 
 export const paraReal = (valor: number) =>

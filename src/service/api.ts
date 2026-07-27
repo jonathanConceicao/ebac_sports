@@ -5,7 +5,7 @@ import { Produto } from '../App'
 const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://ebac-fake-api.vercel.app/api/',
+    baseUrl: 'https://api-ebac.vercel.app/api/ebac_sports',
   }),
 
   endpoints: (builder) => ({
