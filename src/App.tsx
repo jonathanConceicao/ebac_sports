@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 
 import { store } from './store'
 
-export type Sports = {
+export type Produto = {
   id: number
   titulo: string
   plataformas: string[]

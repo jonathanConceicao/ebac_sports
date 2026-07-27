@@ -1,10 +1,10 @@
 import Produto from '../components/Produto'
-import { useGetJogosQuery } from '../service/api'
+import { useGetProdutosQuery } from '../service/api'
 
 import * as S from './styles'
 
 const Produtos = () => {
-  const { data: produtos, isLoading, isError } = useGetJogosQuery()
+  const { data: produtos, isLoading, isError } = useGetProdutosQuery()
 
   if (isLoading) {
     return <h2>Carregando...</h2>

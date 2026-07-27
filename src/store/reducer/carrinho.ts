@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { Sports } from '../../App'
+import { Produto } from '../../App'
 
 type carrinhosState = {
-  itens: Sports[]
+  itens: Produto[]
 }
 
 const initialState: carrinhosState = {
@@ -14,7 +14,7 @@ const carrinhoSlice = createSlice({
   name: 'carrinho',
   initialState,
   reducers: {
-    adicionar: (state, action: PayloadAction<Sports>) => {
+    adicionar: (state, action: PayloadAction<Produto>) => {
       const produtos = action.payload
 
       if (state.itens.find((Produto) => Produto.id === produtos.id)) {

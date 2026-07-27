@@ -1,12 +1,12 @@
 import { useDispatch } from 'react-redux'
-import { Sports } from '../../App'
+import { Produto as ProdutoType } from '../../App'
 import * as S from './styles'
 
 import { adicionar } from '../../store/reducer/carrinho'
 import { Produtos } from '../../containers/styles'
 
 type Props = {
-  item: Sports
+  item:  ProdutoType
 }
 
 export const paraReal = (valor: number) =>
