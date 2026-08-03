@@ -1,7 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-
 import carrinhoReducer from './reducer/carrinho'
-
 import api from '../service/api'
 
 export const store = configureStore({
