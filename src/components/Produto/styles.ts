@@ -1,88 +1,53 @@
 import styled from 'styled-components'
 
-import { cores } from '../../styles'
+export const Card = styled.div`
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+`
 
-export const Produto = styled.div``
+export const Capa = styled.img`
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+`
 
 export const Titulo = styled.h3`
-  min-height: 64px;
-`
-
-export const Capa = styled.div`
-  position: relative;
-
-  img {
-    display: block;
-    width: 100%;
-    margin-bottom: 8px;
-  }
-`
-
-export const Prices = styled.div`
-  margin: 16px 0;
-  color: #fff;
-
-  small {
-    font-size: 16px;
-    text-decoration: line-through;
-    margin-right: 8px;
-    opacity: 0.7;
-  }
-
-  strong {
-    font-size: 18px;
-  }
+  font-size: 18px;
+  font-weight: bold;
+  margin: 8px 0;
 `
 
 export const Tag = styled.span`
-  background-color: ${cores.corPrincipal};
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  padding: 8px;
   font-size: 12px;
-  font-weight: 700;
-  color: #fff;
-`
-export const Plataformas = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  margin: 8px 0 0;
-
-  li {
-    background-color: ${cores.corPrincipal};
-    padding: 8px;
-    font-size: 10px;
-    white-space: nowrap;
-    margin-right: 8px;
-    margin-bottom: 8px;
-    color: #fff;
-    font-weight: bold;
-  }
-`
-export const BtnComprar = styled.button`
-  display: block;
-  width: 100%;
-  background-image: linear-gradient(
-    45deg,
-    ${cores.corPrincipal},
-    ${cores.corSecundaria}
-  );
-  font-weight: bold;
-  font-size: 16px;
-  padding: 12px 0;
-  text-transform: capitalize;
-  color: #eee;
-  border: none;
-  cursor: pointer;
+  background-color: #eee;
+  padding: 4px 8px;
   border-radius: 4px;
-  margin-bottom: 8px;
+  display: inline-block;
+`
+
+export const Preco = styled.p`
+  font-size: 16px;
+  font-weight: bold;
+  color: #2ecc71;
+  margin-top: 8px;
+`
+
+export const BtnComprar = styled.button`
+  background-color: #2ecc71;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 8px;
+  width: 100%;
+  transition: background-color 0.2s ease;
 
   &:hover {
-    background-image: linear-gradient(
-      -45deg,
-      ${cores.corPrincipal},
-      ${cores.corSecundaria}
-    );
+    background-color: #27ae60;
   }
 `

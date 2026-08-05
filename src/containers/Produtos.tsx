@@ -1,5 +1,5 @@
 import { useGetProdutosQuery } from '../service/api'
-import ProdutoComponente from '../components/Produto'
+import ProdutoComponent from '../components/Produto'
 import { Produto } from '../App'
 import * as S from './styles'
 
@@ -16,8 +16,8 @@ const Produtos = () => {
 
   return (
     <S.Produtos>
-      {produtos?.map((produto) => (
-        <ProdutoComponente key={produto.id} produto={produto} />
+      {(produtos ?? []).map((produto) => (
+        <ProdutoComponent key={produto.id} produto={produto} />
       ))}
     </S.Produtos>
   )

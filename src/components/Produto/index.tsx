@@ -1,41 +1,32 @@
 import { useDispatch } from 'react-redux'
 import { Produto as ProdutoType } from '../../App'
-import * as S from './styles'
-
 import { adicionar } from '../../store/reducer/carrinho'
-import { Produtos } from '../../containers/styles'
+import * as S from './styles'
 
 type Props = {
   produto: ProdutoType
 }
 
-export const paraReal = (valor: number) =>
-  new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(
-    valor
-  )
+export const paraReal = (valor: number) => {
+  return new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  }).format(valor)
+}
 
 const Produto = ({ produto }: Props) => {
   const dispatch = useDispatch()
+
   return (
-    <S.Produto>
-      <S.Capa>
-        <S.Tag>{produto.categoria}</S.Tag>
-        <img src={Produtos.imagem} alt={Produtos.nome} />
-      </S.Capa>
+    <S.Card>
+      <S.Capa src={produto.imagem} alt={produto.nome} />
       <S.Titulo>{produto.nome}</S.Titulo>
-      <S.Plataformas>
-        {produto.plataformas.map((plat) => (
-          <li key={plat}>{plat}</li>
-        ))}
-      </S.Plataformas>
-      <S.Prices>
-        {produto.precoAntigo && <small>{paraReal(produto.precoAntigo)}</small>}
-        <strong>{paraReal(produto.preco)}</strong>
-      </S.Prices>
-      <S.BtnComprar onClick={() => dispatch(adicionar(produto))} type="button">
+      <S.Tag>{produto.categoria}</S.Tag>
+      <S.Preco>R$ {produto.preco.toFixed(2)}</S.Preco>
+      <S.BtnComprar type="button" onClick={() => dispatch(adicionar(produto))}>
         Adicionar ao carrinho
       </S.BtnComprar>
-    </S.Produto>
+    </S.Card>
   )
 }
 

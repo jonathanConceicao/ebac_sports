@@ -8,13 +8,12 @@ import { store } from './store'
 
 export type Produto = {
   id: number
-  titulo: string
-  plataformas: string[]
-  precoAntigo: number
   nome: string
   preco: number
   categoria: string
   imagem: string
+  plataformas?: string[]
+  precoAntigo?: number
 }
 
 function App() {
